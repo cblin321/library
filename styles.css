@@ -1,0 +1,92 @@
+.book {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+}
+
+body {
+    background-color: #ebeff9;
+    width: 100vw;
+    height: 1000%;
+    overflow: scroll;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.read {
+    background-color: #8ae84e;
+}
+
+.not-read {
+    background-color: #ef606f;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-weight: 900;
+}
+
+.add-book {
+    background-color: #dadee7;
+    opacity: 0.6;
+    border: none;
+    width: 200px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.add-book:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.top {
+    position: sticky;
+    top: 0;
+    height: min(150px, 10vh);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 10px -10px;
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    /* transform: translate(-50%, -50%) scale(.1); */
+    background-color: white;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    transition: all 0.4s ease-in-out;
+    visibility: hidden;
+}
+
+.arg-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.open-popup {
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    position: fixed;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 450px;
+    margin-top: 25px;
+}

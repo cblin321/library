@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <script src="book.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo&family=IBM+Plex+Sans:wght@200&family=Lato&family=Red+Hat+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="top">
+        <h1 class="page-title">Library</h1>
+    </div>
+    <div class="popup hidden">
+        <h2 class="popup-header">Add a Book</h2>
+        <div class="input-container">
+            <input class="book-info title" placeholder="Title">
+            <input class="book-info author" placeholder="Author">
+            <input class="book-info pages" type="number" placeholder="Pages">
+            <div class="arg-container">
+                <label for="read">Read?</label>
+                <input class="book-info read" type="checkbox" id="read">
+            </div>
+            <button class="add">+ Add Book</button>
+        </div>
+    </div>
+    <div class="content">
+        <button class="add-book">+ Add Book</button>
+        <div class="book-container">
+
+        </div>
+    </div>
+    <script>
+        const popup = document.getElementsByClassName("popup")[0];
+        const add = document.getElementsByClassName("add")[0];
+        add.addEventListener("click", () => {
+            addBook();
+            displayBooks();
+            popup.classList.remove("open-popup");
+        });
+        const addBtn = document.getElementsByClassName("add-book")[0];
+        addBtn.addEventListener("click", () => {
+            popup.classList.add("open-popup");
+        });
+    </script>
+</body>
+</html>

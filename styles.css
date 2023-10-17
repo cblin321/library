@@ -43,7 +43,7 @@ h1 {
     border-radius: 50px;
 }
 
-.add-book:hover {
+button:hover {
     opacity: 1;
     cursor: pointer;
 }
@@ -58,23 +58,94 @@ h1 {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 10px -10px;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+    z-index: 1; /* Ensure it's above other content */
+    display: none; /* Initially hidden */
+}
+
 .popup {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.1);
     /* transform: translate(-50%, -50%) scale(.1); */
-    background-color: white;
-    width: 400px;
-    height: 500px;
+    background-color: #ebeaeb;
+    width: 300px;
+    height: 375px;
     border-radius: 10px;
     transition: all 0.4s ease-in-out;
     visibility: hidden;
+    z-index: 2;
+    /* padding-bottom: 25px; */
 }
 
 .arg-container {
     display: flex;
     flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+input:not(.read) {
+    width: 85%;
+    outline: none;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 570;
+    /* box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; */
+}
+
+.remove-book {
+    background-color: #c3cdd2;
+}
+
+.not-read, .read {
+    opacity: 0.8;
+}
+
+.book-button {
+    border: none;
+    border-radius: 6px;
+    width: 60%;
+    height: 35px;
+}
+
+h2 {
+    margin: 0 auto 0 auto;
+    /* margin-top: 25px;
+    margin-bottom: 0; */
+    font-weight: bold;
+}
+
+.book-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, clamp(100px, 25%, 500px));
+    grid-template-rows: repeat(auto-fit, 1fr);
+    gap: 20px;
+}
+
+.book {
+    background-color: #ebeaeb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+    /* height: 110%; */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .open-popup {
@@ -87,6 +158,26 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 450px;
-    margin-top: 25px;
+    height: 100%;
+    /* margin-top: 25px; */
+    align-items: center;
 }
+
+label {
+    font-weight: 900px; 
+    font-size: 1.1rem;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.05);
+}
+
+.add {
+    width: 85%;
+    height: 40px;
+    border: none;
+    background-color: #6dd97a;
+    border-radius: 10px;
+    opacity: .8;
+}
+

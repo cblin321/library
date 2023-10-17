@@ -5,14 +5,11 @@ function addBook() {
     const author = popupInfo[1].value;
     const pages = popupInfo[2].value;
     const read = popupInfo[3].checked;
-    console.log(title);
     popupInfo[0].value = "";
     popupInfo[1].value = "";
     popupInfo[2].value = "";
     popupInfo[3].checked = false;
     library.push(new Book(title, author, pages, read));
-    console.log("added");
-    console.log(library);
 }
 
 function displayBooks() {
@@ -24,25 +21,33 @@ function displayBooks() {
         book.className = "book";
         const title = document.createElement("p");
         title.textContent = i.title;
+        title.className = "book-text";
         const author = document.createElement("p");
         author.textContent = i.author;
+        author.className = "book-text";
         const pages = document.createElement("p");
         pages.textContent = i.pages;
+        pages.className = "book-text";
         const read = document.createElement("button");
-        read.addEventListener("click", () => {
-            changeRead(read);
-        });
+        read.classList.add("book-button");
+        read.addEventListener("click", ((book, button) => () => {
+            changeRead(book, button);
+        })(i, read));
         const remove = document.createElement("button");
         remove.addEventListener("click", (bookToRemove => () => {
             removeBook(bookToRemove, library);
         })(i));
-        remove.className = "remove-book";
+        remove.classList.add("remove-book");
+        remove.classList.add("book-button");
         remove.textContent = "Remove";
-        read.textContent = i.isRead;
-        if (i.isRead === "Read")
-            read.className = "read";
+        if (i.isRead)
+            read.textContent = "Read";
+        else 
+            read.textContent = "Not Read" 
+        if (i.isRead)
+            read.classList.add("read");
         else
-            read.className = "not-read";
+            read.classList.add("not-read");
         book.appendChild(title);
         book.appendChild(author);
         book.appendChild(pages);
@@ -52,15 +57,20 @@ function displayBooks() {
     }
 }
 
-function changeRead(button) {
-    if (button.textContent == "Not Read") {
+function changeRead(book, button) {
+    // console.log(book.isRead);
+    if (!book.isRead) {
         button.textContent = "Read";
-        button.className = "read";
+        button.classList.remove("not-read");
+        button.classList.add("read");
     } else {
         button.textContent = "Not Read";
+        button.classList.remove("read");
+        button.classList.add("not-read");
         button.className = "not-read";
     }
-
+    book.isRead = !book.isRead;
+    // console.log(book.isRead);
 }
 
 function removeBook(book, library) {
@@ -87,10 +97,11 @@ function Book(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    if (isRead)
-        this.isRead = "Read";
-    else 
-        this.isRead = "Not Read"
+    this.isRead = isRead;
+    // if (isRead)
+    //     this.isRead = "Read";
+    // else 
+    //     this.isRead = "Not Read"
     // this.isRead = isRead;
     this.info = () => {
         if (isRead)

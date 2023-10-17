@@ -7,30 +7,34 @@
     <script src="book.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arimo&family=IBM+Plex+Sans:wght@200&family=Lato&family=Red+Hat+Display&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arimo&family=IBM+Plex+Sans:wght@200;400&family=Lato&family=Red+Hat+Display&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="top">
-        <h1 class="page-title">Library</h1>
-    </div>
-    <div class="popup hidden">
-        <h2 class="popup-header">Add a Book</h2>
-        <div class="input-container">
-            <input class="book-info title" placeholder="Title">
-            <input class="book-info author" placeholder="Author">
-            <input class="book-info pages" type="number" placeholder="Pages">
-            <div class="arg-container">
-                <label for="read">Read?</label>
-                <input class="book-info read" type="checkbox" id="read">
-            </div>
-            <button class="add">+ Add Book</button>
-        </div>
-    </div>
-    <div class="content">
-        <button class="add-book">+ Add Book</button>
-        <div class="book-container">
+    <div class="overlay">
 
+    </div>
+    <div class="container">
+        <div class="top">
+            <h1 class="page-title">Library</h1>
+        </div>
+        <div class="popup hidden">
+            <div class="input-container">
+                <h2 class="popup-header">Add a Book</h2>
+                <input class="book-info title" placeholder="Title" required>
+                <input class="book-info author" placeholder="Author" required>
+                <input class="book-info pages" type="number" placeholder="Pages" required>
+                <div class="arg-container">
+                    <label for="read">Read?</label>
+                    <input class="book-info read" type="checkbox" id="read">
+                </div>
+                <button class="add">+ Add Book</button>
+            </div>
+        </div>
+        <div class="content">
+            <button class="add-book">+ Add Book</button>
+            <div class="book-container">
+            </div>
         </div>
     </div>
     <script>
@@ -40,10 +44,17 @@
             addBook();
             displayBooks();
             popup.classList.remove("open-popup");
+            overlay.style.display = "none";
         });
         const addBtn = document.getElementsByClassName("add-book")[0];
         addBtn.addEventListener("click", () => {
             popup.classList.add("open-popup");
+            overlay.style.display = "block";
+        });
+        const overlay = document.getElementsByClassName("overlay")[0];
+        overlay.addEventListener('click', () => {
+            popup.classList.remove("open-popup");
+            overlay.style.display = 'none';
         });
     </script>
 </body>

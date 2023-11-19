@@ -79,33 +79,64 @@ function removeBook(book, library) {
 }
 
 function findBook(bookA, bookB) {
-    console.log(bookA);
-    console.log(bookB);
-    console.log(
-        bookA.title === bookB.title && 
-    bookA.author === bookB.author &&
-    bookA.pages === bookB.pages &&
-    bookA.isRead === bookB.isRead
-    );
+    // console.log(bookA);
+    // console.log(bookB);
+    // console.log(
+    //     bookA.title === bookB.title && 
+    // bookA.author === bookB.author &&
+    // bookA.pages === bookB.pages &&
+    // bookA.isRead === bookB.isRead
+    // );
     return bookA.title === bookB.title && 
     bookA.author === bookB.author &&
     bookA.pages === bookB.pages &&
     bookA.isRead === bookB.isRead;
 }
 
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    // if (isRead)
-    //     this.isRead = "Read";
-    // else 
-    //     this.isRead = "Not Read"
-    // this.isRead = isRead;
-    this.info = () => {
-        if (isRead)
-            return `${this.title} by ${this.author}, ${this.pages} pages, read`;
-        return `${this.title} by ${this.author}, ${this.pages} pages, not read`;
+class Book {
+    constructor (title, author, pages, isRead) {
+        this._title = title;
+        this._author = author;
+        this._pages = pages;
+        this._isRead = isRead;
+
     }
+    get info() {
+        return this.info;
+    }
+    #updateInfo() {
+        if (isRead)
+            this.info = `${this.title} by ${this.author}, ${this.pages} pages, read`;
+        else 
+            this.info = `${this.title} by ${this.author}, ${this.pages} pages, not read`;
+    }
+    get title() {
+        return this._title;
+    }
+    get author() {
+        return this._author;
+    }
+    get pages() {
+        return this._pages;
+    }
+    get isRead() {
+        return this._isRead;
+    }
+    set title(val) {
+        this._title = val;
+        this.#updateInfo();
+    }
+    set author(val) {
+        this._author = val;
+        this.#updateInfo();
+    }
+    set pages(val) {
+        this._pages = val;
+        this.#updateInfo();
+    }
+    set isRead(val) {
+        this._isRead = val;
+        this.#updateInfo();
+    }
+
 }

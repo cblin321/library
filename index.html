@@ -42,7 +42,7 @@
         const add = document.getElementsByClassName("add")[0];
         popup.addEventListener("submit", (e) => {
             //console.log([].slice.call(popup.querySelectorAll("[required]")).filter((i) => !i.validity.valid))
-            if ([].slice.call(popup.querySelectorAll("[required]")).filter((i) => !i.validity.valid).length === 0) {
+            if ([].slice.call(popup.querySelectorAll("[required]")).filter((i) => !i.validity.valid|| i.validity.badInput).length === 0) {
                 [].slice.call(popup.querySelectorAll("[required]")).forEach(i => {
                     i.setCustomValidity("");
                 });
@@ -53,9 +53,10 @@
                 e.preventDefault();
 
             } else {
-                const invalid = [].slice.call(popup.querySelectorAll("[required]")).find(i => i.validity.valueMissing || i.validity.valueMismatch);
+                const invalid = [].slice.call(popup.querySelectorAll("[required]")).find(i => i.validity.valueMissing || i.validity.badInput);
                 invalid.setCustomValidity("Fill out all forms");
                 invalid.reportValidity();
+                invalid.setCustomValidity("");
                 e.preventDefault();
             }
         });

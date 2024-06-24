@@ -18,7 +18,7 @@
         <div class="top">
             <h1 class="page-title">Library</h1>
         </div>
-        <div class="popup hidden">
+        <form class="popup hidden" novalidate>
             <div class="input-container">
                 <h2 class="popup-header">Add a Book</h2>
                 <input class="book-info title" placeholder="Title" required>
@@ -28,9 +28,9 @@
                     <label for="read">Read?</label>
                     <input class="book-info read" type="checkbox" id="read">
                 </div>
-                <button class="add">+ Add Book</button>
+                <input type="submit" class="add">+ Add Book</button>
             </div>
-        </div>
+        </form>
         <div class="content">
             <div class="center"><button class="add-book">+ Add Book</button></div>
             <div class="book-container">
@@ -40,11 +40,24 @@
     <script>
         const popup = document.getElementsByClassName("popup")[0];
         const add = document.getElementsByClassName("add")[0];
-        add.addEventListener("click", () => {
-            addBook();
-            displayBooks();
-            popup.classList.remove("open-popup");
-            overlay.style.display = "none";
+        popup.addEventListener("submit", (e) => {
+            //console.log([].slice.call(popup.querySelectorAll("[required]")).filter((i) => !i.validity.valid))
+            if ([].slice.call(popup.querySelectorAll("[required]")).filter((i) => !i.validity.valid).length === 0) {
+                [].slice.call(popup.querySelectorAll("[required]")).forEach(i => {
+                    i.setCustomValidity("");
+                });
+                addBook();
+                displayBooks();
+                popup.classList.remove("open-popup");
+                overlay.style.display = "none";
+                e.preventDefault();
+
+            } else {
+                const invalid = [].slice.call(popup.querySelectorAll("[required]")).find(i => i.validity.valueMissing || i.validity.valueMismatch);
+                invalid.setCustomValidity("Fill out all forms");
+                invalid.reportValidity();
+                e.preventDefault();
+            }
         });
         const addBtn = document.getElementsByClassName("add-book")[0];
         addBtn.addEventListener("click", () => {

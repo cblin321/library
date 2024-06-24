@@ -9,6 +9,7 @@ function addBook() {
     popupInfo[1].value = "";
     popupInfo[2].value = "";
     popupInfo[3].checked = false;
+    console.log(title, author, pages, read);
     library.push(new Book(title, author, pages, read));
 }
 
@@ -54,11 +55,12 @@ function displayBooks() {
         book.appendChild(read);
         book.appendChild(remove);
         container.appendChild(book);
+        console.log(container.children);
+        console.log(container);
     }
 }
 
 function changeRead(book, button) {
-    // console.log(book.isRead);
     if (!book.isRead) {
         button.textContent = "Read";
         button.classList.remove("not-read");
@@ -79,14 +81,6 @@ function removeBook(book, library) {
 }
 
 function findBook(bookA, bookB) {
-    // console.log(bookA);
-    // console.log(bookB);
-    // console.log(
-    //     bookA.title === bookB.title && 
-    // bookA.author === bookB.author &&
-    // bookA.pages === bookB.pages &&
-    // bookA.isRead === bookB.isRead
-    // );
     return bookA.title === bookB.title && 
     bookA.author === bookB.author &&
     bookA.pages === bookB.pages &&
